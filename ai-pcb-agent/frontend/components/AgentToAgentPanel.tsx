@@ -17,14 +17,19 @@
 
 import { useEffect, useState } from "react";
 import { Bot, ExternalLink, Loader2, AlertTriangle } from "lucide-react";
-import { agentInfer, getAgentWallet, type AgentWalletStatus, type AgentPayResult } from "@/lib/x402";
+import {
+  agentManufacturingOrder,
+  getAgentWallet,
+  type AgentWalletStatus,
+  type AgentPayResult,
+} from "@/lib/x402";
 
 interface Props {
-  buildPrompt: () => unknown;
+  buildOrder: () => unknown;
   onResult: (r: AgentPayResult) => void;
 }
 
-export default function AgentToAgentPanel({ buildPrompt, onResult }: Props) {
+export default function AgentToAgentPanel({ buildOrder, onResult }: Props) {
   const [wallet, setWallet] = useState<AgentWalletStatus | null>(null);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -41,7 +46,7 @@ export default function AgentToAgentPanel({ buildPrompt, onResult }: Props) {
     setBusy(true);
     setError(null);
     try {
-      const r = await agentInfer(buildPrompt());
+      const r = await agentManufacturingOrder(buildOrder());
       setResult(r);
       onResult(r);
     } catch (e) {
@@ -64,9 +69,10 @@ export default function AgentToAgentPanel({ buildPrompt, onResult }: Props) {
       </div>
 
       <p className="mb-4 text-xs leading-relaxed text-base-400">
-        The PCB agent pays the inference service from its own wallet. No
-        signature, no popup — machine-to-machine settlement on Algorand.
-      </p>
+  The Fabx402 agent pays for the manufacturing order from its own wallet.
+  No Pera popup or human signature is required — the agent settles the
+  x402 payment autonomously on Algorand Testnet.
+</p>
 
       <dl className="mb-4 space-y-1.5">
         <div className="flex items-baseline justify-between gap-3">
