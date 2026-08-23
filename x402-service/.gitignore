@@ -1,0 +1,10 @@
+node_modules/
+dist/
+data/
+.env
+.env.local
+*.log
+.next/
+.env.download
+ai-pcb-agent/backend/data/uploads/*
+!ai-pcb-agent/backend/data/uploads/.gitkeep

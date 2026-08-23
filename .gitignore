@@ -1,0 +1,40 @@
+# ---- Secrets: NEVER commit these -------------------------------------------
+.env
+.env.local
+.env.*.local
+*.mnemonic
+*.key
+
+# ---- Node ------------------------------------------------------------------
+node_modules/
+.next/
+out/
+dist/
+build/
+*.tsbuildinfo
+npm-debug.log*
+yarn-error.log*
+
+# ---- Python ----------------------------------------------------------------
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+*.egg-info/
+.pytest_cache/
+
+# ---- Runtime data (payments/orders written at runtime) ---------------------
+x402-service/data/
+backend/uploads/
+*.db
+*.sqlite3
+
+# ---- OS / editor -----------------------------------------------------------
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+.env.download
+ai-pcb-agent/backend/data/uploads/*
+!ai-pcb-agent/backend/data/uploads/.gitkeep
